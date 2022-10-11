@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Todo;
 
 class TodoController extends Controller
 {
@@ -13,7 +14,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        return Todo::all();
     }
 
     /**
@@ -24,7 +25,7 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Todo::create($request->all());
     }
 
     /**
@@ -47,7 +48,10 @@ class TodoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Todo::where('id',$id)->update([
+            'todo' => $request->todo,
+            'category' => $request->category
+        ]);
     }
 
     /**
@@ -58,6 +62,6 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Todo::where('id',$id)->delete();
     }
 }
