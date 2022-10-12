@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('/todos',App\Http\Controllers\TodoController::class);
+Route::get('/',function(){
+    return view('todo.index');
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
